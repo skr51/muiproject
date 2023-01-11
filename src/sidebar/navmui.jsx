@@ -1,7 +1,7 @@
 
 import AppBar from "@mui/material/AppBar";
 import React from "react";
-import logo from '../img/images.jpg'
+import logo from '../img/reactlogo.jpg'
 import Container from "@mui/material/Container";
 
 
