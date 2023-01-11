@@ -1,19 +1,23 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
 import Welcome from '../img/welcome.jpg'
+import Portfolio1 from '../img/portfolio1.jpg'
+import Portfolio2 from '../img/portfolio2.jpg'
+import Portfolio3 from '../img/portfolio3.jpg'
 
 function WelcomeTree() {
     return (
        <Box paddingTop={5}>
         <Stack
-       direction={{xs:"column", sm:'row'}}
+        
+       direction={{xs:"column", sm:'row' }}
        justifyContent="space-between"
        alignItems="center"
        spacing={2}
      >
-        <Box>
+        <Box sx={{boxShadow:3}}>
          <Box sx={{
-      backgroundImage:`url(${Welcome})`,
+      backgroundImage:`url(${Portfolio1})`,
       backgroundRepeat:'no-repeat',
       backgroundColor:"black",
       backgroundPosition:'center',
@@ -39,9 +43,9 @@ function WelcomeTree() {
       <Typography variant='h6' sx={{color:"black",padding:"10px"}}>DOWNLOAD</Typography>
 
     </Box></Box>
-    <Box>
+    <Box sx={{boxShadow:3}}>
     <Box sx={{
-      backgroundImage:`url(${Welcome})`,
+      backgroundImage:`url(${Portfolio2})`,
       backgroundRepeat:'no-repeat',
       backgroundColor:"black",
       backgroundPosition:'center',
@@ -67,9 +71,9 @@ function WelcomeTree() {
       <Typography variant='h6' sx={{color:"black",padding:"10px"}}>DOWNLOAD</Typography>
 
     </Box></Box>
-    <Box>
+    <Box sx={{boxShadow:3}}>
     <Box sx={{
-      backgroundImage:`url(${Welcome})`,
+      backgroundImage:`url(${Portfolio3})`,
       backgroundRepeat:'no-repeat',
       backgroundColor:"black",
       backgroundPosition:'center',
@@ -96,8 +100,12 @@ function WelcomeTree() {
 
     </Box></Box>
      </Stack>
-     <Box padding={3} >
-     <Button variant="contained" justifyContent={"center"} ><Typography variant="h4" justifyContent={"center"}>VIEW PORTPOLIO</Typography></Button>
+     <Box padding={3}>
+      <Stack  justifyContent="center" alignItems="center">
+        <Box> <Button variant="contained" sx={{justifyContent:'center',background:'rgb(255 64 129)'}} >
+          <Typography sx={{variant:{xs:"h6",sm:"h5"}}}>VIEW PORTPOLIO</Typography></Button></Box>
+      </Stack >
+    
      </Box>
      </Box>
     )

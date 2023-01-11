@@ -27,7 +27,7 @@ export default function WelcomeOne() {
        leading engineering construction and end-user companies. 
       </Typography>
 
-    </Box><hr></hr><Box sx={{
+    </Box><hr sx={{margin:null}}></hr><Box sx={{
       width:'100%',
       backgroundColor:"white",
     }}>
