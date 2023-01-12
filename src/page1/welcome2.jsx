@@ -1,21 +1,21 @@
 import { Card, CardActionArea, CardContent, Paper, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Welcome from '../img/welcome.jpg'
-
+import Button from '@mui/material/Button';
 
 
 function WelcomeTwo() {
 
   return (
 
-    <Box paddingTop={4}>
+    <Box padding={"8px 0px"} marginBottom={"28px"}>
 
       <Stack direction={{ xs: "column", sm: 'row' }}
         justifyContent="space-between"
         alignItems="center"
         spacing={2} >
 
-        <Box paddingBottom={{ sx: 2 }} sx={{ width: { sm: '25%', xs: "100%" }, height: 300, boxShadow: 3 }}>
+        <Box  sx={{ width: { sm: '25%', xs: "100%" }, boxShadow: 3 }}>
           <Paper elevation={3}>
             <Box sx={{
               backgroundImage: `url(${Welcome})`,
@@ -23,35 +23,38 @@ function WelcomeTwo() {
               backgroundColor: "black",
               backgroundPosition: 'center',
               backgroundSize: 'cover',
-              height: 300,
+              height: 194.5,
               width: '100',
 
             }}></Box></Paper></Box >
 
-        <Box sx={{ width: { sm: "74%", xs: "100" }, height: { sm: 300,  }, backgroundColor: "gray"}}>
-          <Paper elevation={3}>
+        <Box  sx={{ width: { sm: "74%", xs: "100" },  backgroundColor: "gray"}}>
+          <Paper elevation={3} >
             <Box sx={{
               width: '100%',
-              backgroundColor: "white",height:50
+              backgroundColor: "white",padding:2
             }}>
-              <Typography variant="h4" sx={{ color: "black", padding: "5px", }}>
+              <Typography fontSize={'24px'} sx={{ color: "black"}}>
                 Introduection
               </Typography></Box>
-            <Box sx={{
-              width: '100%',
-              backgroundColor: "white",height:200
+
+            <Box padding= {"16px"}  sx={{
+              width: '90%',
+              backgroundColor: "white"
             }}>
-              <Typography sx={{ color: "black", padding: "5px", }}>
+              <Typography fontSize={'14px'} sx={{ color: "black", }}>
                 Headquartered in Idiazabal, Spain, and founded in 1964, AMPO Poyam has been
                 entrusted with the largest international projects by the world's
                 leading engineering construction and end-user companies.
-              </Typography>
+              </Typography></Box>
 
-            </Box><Box sx={{
+            <Box sx={{
               width: '100%',
-              backgroundColor: "white",height:50
+              backgroundColor: "white",
             }}>
-              <Typography variant='h6' sx={{ color: "black", padding: "5px" }}>DOWNLOAD</Typography>
+             <Box padding={'8px'}>
+          <Button variant="text" size="medium" sx={{color:'rgb(255 64 129)'}}>
+           DOWNLOAD</Button></Box>
 
             </Box>
           </Paper>

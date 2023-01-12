@@ -6,39 +6,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-hr{
-  margin-top: 0%;
-  margin-bottom: 0%;
-  border-top: 1px dashed red;
+.hr{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top: 1px solid grey;
 }
-.boxOne{
-  box-shadow: 2rem;
-}
-div.container-md{
-  background-color: aqua;
-}
+
+
 
 .header{
   background-color: blue;
   height:200px;
 }
 
-.option{
-  border: 1px  solid red;
-  padding: 0px 0px;
-  margin-top: 50px;
-}
+
 .img{
   border: 1px  solid red;
 }
-.pd{
-  margin-top: 40px;
-}
 
-.navbar-expand {
-  flex-wrap: wrap;
-  justify-content: center;
-}
+
+
 .bg{
   padding: 20px;
   border: 1px solid rgb(56, 54, 54);
@@ -49,12 +36,9 @@ div.container-md{
   font-style: bold;
   color:coral;
 }
-.bg-footer{
-  padding: 10px;
-  background-color: #292b2a;
-  border: 1px solid white;
-  box-sizing: border-box;
-  margin-top: 50px;}
+.ft-content-box{
+padding: 32px;
+}
   .ft{
     max-height:60px;
 

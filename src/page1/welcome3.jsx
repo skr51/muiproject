@@ -1,15 +1,15 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
-import Welcome from '../img/welcome.jpg'
+
 import Portfolio1 from '../img/portfolio1.jpg'
 import Portfolio2 from '../img/portfolio2.jpg'
 import Portfolio3 from '../img/portfolio3.jpg'
 
 function WelcomeTree() {
     return (
-       <Box paddingTop={5}>
-        <Stack
-        
+       <Box >
+        <Box padding={"8px 0px "} margin={"0px 0px 28px 0px"}>
+          <Stack        
        direction={{xs:"column", sm:'row' }}
        justifyContent="space-between"
        alignItems="center"
@@ -99,8 +99,8 @@ function WelcomeTree() {
       <Typography variant='h6' sx={{color:"black",padding:"10px"}}>DOWNLOAD</Typography>
 
     </Box></Box>
-     </Stack>
-     <Box padding={3}>
+     </Stack></Box>
+     <Box padding={'8px'} marginBottom={'28px'}>
       <Stack  justifyContent="center" alignItems="center">
         <Box> <Button variant="contained" sx={{justifyContent:'center',background:'rgb(255 64 129)'}} >
           <Typography sx={{variant:{xs:"h6",sm:"h5"}}}>VIEW PORTPOLIO</Typography></Button></Box>
