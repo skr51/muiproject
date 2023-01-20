@@ -151,7 +151,7 @@ const {name,mail,mobile}=existingUser[0];
         
                         <div className="field-set">
                             <label>phone no</label><br></br>
-                            <input
+                            <input 
                                 maxLength={10}
                                 type='text'
                                 name='mobile'
@@ -162,10 +162,11 @@ const {name,mail,mobile}=existingUser[0];
                             />
                              {errors.mobile ? <label style={{ color: "red", fontSize: "10px" }}>enter phone number</label> : ""}
                         </div>
-                        <button>update user</button>
-                        <button onClick={() => {
+                        <input type="submit" value="UPDATE USER" />
+                      <button className="btn-cancel" onClick={() => {
                     setValues(initialFormState);
-                }}>cancel</button>
+                }} >CANCEL</button> 
+                       
                        </form>
                    
         </div>

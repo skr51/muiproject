@@ -115,7 +115,7 @@ function AddUser(){
                         console.log(addUser,"<<<<<add");navigate('/user-list'); } } }>
 
 
-                <h1>ADD USER</h1>
+                <h1 className="form-head">ADD USER</h1>
 
                 <div className="field-set">
                     <label>name</label><br></br>
