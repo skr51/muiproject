@@ -1,7 +1,8 @@
 
 import AppBar from "@mui/material/AppBar";
 import React from "react";
-import logo from '../img/reactlogo.jpg'
+import { NavLink } from "react-router-dom";
+
 import Container from "@mui/material/Container";
 
 
@@ -39,10 +40,10 @@ function Navmui() {
                         spacing={0}
                         padding={1}
                     >
-                        <Box><toolbar><Typography variant="h6" sx={{ alignItems: "center", justifyContent: "center" }}>HOME</Typography></toolbar></Box>
-                        <toolbar>PORTFOLIO</toolbar>
-                        <toolbar>CONTACT US</toolbar>
-                        <toolbar>ABOUT</toolbar>
+                        <Box  ><NavLink to= '/'><toolbar><Typography variant="h6" sx={{ alignItems: "center", justifyContent: "center" }}>HOME</Typography></toolbar></NavLink></Box>
+                        <Box  ><NavLink to= '/user-list'> <toolbar>USERLIST</toolbar></NavLink></Box>
+                        <Box  ><NavLink to="/add-user"> <toolbar>ADDUSER</toolbar></NavLink></Box>
+                        <Box  ><NavLink to='/edit-users'> <toolbar>EDITUSER</toolbar></NavLink></Box>
                     </Stack>
                 </Container>
 

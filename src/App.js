@@ -1,27 +1,23 @@
-import { Container } from "@mui/system";
-import React from "react";
-import WelcomeFour from "./page1/welcom4";
-import WelcomeOne from "./page1/welcome";
-import WelcomeTwo from "./page1/welcome2";
-import WelcomeTree from "./page1/welcome3";
-import './index.css';
-import Navmui from "./sidebar/navmui";
-import Footer from "./footer/footer";
-
-
+import React from 'react'
+import UserList from './users/UserList';
+import Home from "./users/home"
+import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import AddUser from './users/AddUser';
+import EditUser from './users/EditUser';
 
 function App() {
-
   return (
-    <><Navmui />
-    <Container Padding={{xs:"0px 8px"}}>
-      <WelcomeOne />
-      <WelcomeTwo />
-      <WelcomeTree/>
-      <WelcomeFour/>
-      </Container>
-      <Footer />
-    </>
+    <div>
+      <Routes>
+      <Route path='/' element={<Home />}/>
+        <Route path='/user-list' element={<UserList />}/>
+        <Route path='/add-user' element={<AddUser />}/>
+        <Route path='/edit-user/:id' element={<EditUser/>}/>
+      </Routes>
+      
+    </div>
   )
 }
+
 export default App;
