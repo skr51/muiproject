@@ -43,7 +43,7 @@ function Navmui() {
                         <Box  ><NavLink to= '/'><toolbar><Typography variant="h6" sx={{ alignItems: "center", justifyContent: "center" }}>HOME</Typography></toolbar></NavLink></Box>
                         <Box  ><NavLink to= '/user-list'> <toolbar>USERLIST</toolbar></NavLink></Box>
                         <Box  ><NavLink to="/add-user"> <toolbar>ADDUSER</toolbar></NavLink></Box>
-                        <Box  ><NavLink to='/edit-users'> <toolbar>EDITUSER</toolbar></NavLink></Box>
+                        <Box  ><NavLink to='/edit-user/:id'> <toolbar>EDITUSER</toolbar></NavLink></Box>
                     </Stack>
                 </Container>
 

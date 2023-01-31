@@ -1,21 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
-import { deleteUser } from "../features/user/userSlice";
+import {  NavLink, useNavigate } from "react-router-dom";
+import { deleteUser , getUsers } from "../features/user/userSlice";
 
 
 
 
 
 const UserList=()=>{
+    const navigate=useNavigate();
     const dispatch=useDispatch();
-    const users= useSelector (store=>store.users);
-   
-   const handleRemoveUser=(id)=>{
-    console.log(id);
-    dispatch(deleteUser({id}));
-   }
+  const {users}=useSelector (store=>store.user);
+
+        useEffect(()=>{
+         
+            dispatch(getUsers());
+            console.log(users,"<<<<<<fttt");
+        },[])
+        
+     
+        const handleRemoveUser=(id)=>{
+            if (window.confirm("Are you sure you want to delete this tour ?")) {
+            dispatch(deleteUser(id));
+           
+            navigate('/user-list');
+            }
+           };
+           const handleEdit=(id)=>{
+            navigate(`/edit-user/${id}`)
+           };
 
 return(
     <div>
@@ -32,17 +46,16 @@ return(
          </thead>
          <tbody>
              {users.length>0 ? (
-                 users.map((user)=>(
-                     <tr key={user.id}>
-                     <td>{user.name}</td>
-                     <td>{user.mail}</td>
-                     <td>{user.mobile}</td>
+                 users.map((user,index)=>(
+                     <tr key={index}>
+                     <td>{user.username}</td>
+                     <td>{user.email}</td>
+                     <td>{user.mobile_number}</td>
                   
                      <td>
-                     <Link to={`/edit-user/${user.id}`}>
-                     <button  className="ed-botton">edit</button></Link>
+                     <button  className="ed-botton" onClick={()=>handleEdit(user._id)}>edit</button>
                    
-                     <button onClick={()=>handleRemoveUser(user.id)} className="ed-botton">delete</button>
+                     <button onClick={()=>handleRemoveUser(user._id)} className="ed-botton">delete</button>
                      </td>
                  </tr>
  

@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../features/user/userSlice";
 import { checkDuplicateSpaces, checkInitialSpace, MobileCharacter   } from "../utils/Helper";
@@ -10,18 +9,19 @@ import { nameCharacter } from "../utils/Helper";
 
 
 function AddUser(){
-    const users=useSelector(store=>store.users);
+   
     const dispatch = useDispatch();
     const navigate=useNavigate();
     const [values, setValues]=useState({
-        
-        name:"",
-        mail:"",
-        mobile:""
+        username:"",
+        email:"",
+        password:"",
+        mobile_number:""
     });
     const [errors, setErrors] = useState({
         name: false,
-        mail: false,
+        email: false,
+        password:false,
         mobile: false
     });
    /* const handleAddUser=()=>
@@ -53,20 +53,24 @@ function AddUser(){
             }
 
 
-        } else if (name === "mail") {
+        } else if (name === "email") {
 
 
             if (value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)) {
-                setErrors({ ...errors, mail: false })
+                setErrors({ ...errors, email: false })
                 setValues({ ...values, [name]: value })
             } else if (value.length >= 20) {
 
             } else {
-                setErrors({ ...errors, mail: true })
+                setErrors({ ...errors, email: true })
                 setValues({ ...values, [name]: value })
             }
            
-        }
+        }  else if (name === "password") {
+            setErrors({ ...errors, password: false })
+            setValues({ ...values, [name]: value })
+            console.log(value);
+         }
 
         else if (name === "mobile") {
             console.log('mail trigger');
@@ -95,24 +99,17 @@ function AddUser(){
 <form onSubmit={
                 event => {
                     event.preventDefault();
-                    if (!values.name || !values.mail || !values.mobile) {
-                        return;
-                    }
-
-                    else {
+                   
+                    if (values.name && values.email && values.password&& values.mobile) {
+                          const Data ={
+                            username:values.name,
+                            email:values.email,
+                            password: values.password,
+                            mobile_number:values.mobile};
                         
-        
-                        setValues({id:"",name:"",mail:"",mobil:""});
-                        values.id = users.length + 1;
-                        dispatch(addUser({
-                            id: values.id,
-                            name:values.name,
-                            mail:values.mail,
-                            mobile:values.mobile
-                           
-                        }))
-                        ;
-                        console.log(addUser,"<<<<<add");navigate('/user-list'); } } }>
+                        dispatch(addUser(Data));
+                      navigate('/user-list');
+                       } } }>
 
 
                 <h1 className="form-head">ADD USER</h1>
@@ -133,12 +130,23 @@ function AddUser(){
                     <input
                         type='text'
                         className="mail-field"
-                        name='mail'
+                        name='email'
                         onKeyDown={(e) => mailCharacter.includes(e.key) && e.preventDefault()}
                         onChange={(e) => handleInputChange(e)}
-                        required='required' value={values.mail}/>
-                         {errors.mail ? <label style={{ color: "red", fontSize: "10px" }}>enter mail id</label> : ""}
+                        required='required' value={values.email}/>
+                         {errors.email ? <label style={{ color: "red", fontSize: "10px" }}>enter mail id</label> : ""}
                 </div>
+                <div className="field-set">
+                    <label>password</label><br></br>
+                    <input
+                        maxLength={10}
+                        type='text'
+                        name='password'
+                        onChange={(e) => handleInputChange(e)}
+                        required='required'
+                        value={values.password}
+                       
+                    /></div>
 
                 <div className="field-set">
                     <label>phone no</label><br></br>
