@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addUser } from "../features/user/userSlice";
-import { checkDuplicateSpaces, checkInitialSpace, MobileCharacter   } from "../utils/Helper";
-import { mailCharacter } from "../utils/Helper";
-import { nameCharacter } from "../utils/Helper";
+import { addUser, getUsers } from "../features/user/userSlice";
+import { checkDuplicateSpaces, checkInitialSpace, MobileCharacter   } from "../utils/helper";
+import { MailCharacter } from "../utils/helper";
+import { NameCharacter } from "../utils/helper";
 
 
 function AddUser(){
@@ -41,14 +41,14 @@ function AddUser(){
                 event.preventDefault();
             } else {
                 if (value.length >= 1 && value.length <= 3) {
-                    setErrors({ ...errors, name: true })
-                    setValues({ ...values, [name]: value })
+                    setErrors(errors=>({ ...errors, name: true }))
+                    setValues(values =>({ ...values, [name]: value }))
                 } else if ((value.length >= 50)) {
                     event.preventDefault();
                 } else {
 
-                    setErrors({ ...errors, name: false })
-                    setValues({ ...values, [name]: value })
+                    setErrors(errors=>({ ...errors, name: false }))
+                    setValues(values =>({ ...values, [name]: value }))
                 }
             }
 
@@ -57,33 +57,33 @@ function AddUser(){
 
 
             if (value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)) {
-                setErrors({ ...errors, email: false })
-                setValues({ ...values, [name]: value })
+                setErrors(errors=>({ ...errors, email: false }))
+                setValues(values =>({ ...values, [name]: value }))
             } else if (value.length >= 20) {
 
             } else {
-                setErrors({ ...errors, email: true })
-                setValues({ ...values, [name]: value })
+                setErrors(errors=>({ ...errors, email: true }))
+                setValues(values =>({ ...values, [name]: value }))
             }
            
         }  else if (name === "password") {
-            setErrors({ ...errors, password: false })
-            setValues({ ...values, [name]: value })
+            setErrors(errors=>({ ...errors, password: false }))
+            setValues(values =>({ ...values, [name]: value }))
             console.log(value);
          }
 
         else if (name === "mobile") {
             console.log('mail trigger');
             if (value.charAt(0) <= 5) {
-                setErrors({ ...errors, mobile: true })
-                setValues({ ...values, [name]: value })
+                setErrors(errors=>({ ...errors, mobile: true }))
+                setValues(values =>({ ...values, [name]: value }))
             } else {
                 if (value.length >= 1 && value.length <= 9) {
-                    setErrors({ ...errors, mobile: true })
-                    setValues({ ...values, [name]: value })
+                    setErrors(errors=>({ ...errors, mobile: true }))
+                    setValues(values =>({ ...values, [name]: value }))
                 } else {
-                    setErrors({ ...errors, mobile: false })
-                    setValues({ ...values, [name]: value })
+                    setErrors(errors=>({ ...errors, mobile: false }))
+                    setValues(values =>({ ...values, [name]: value }))
                 }
 
 
@@ -107,7 +107,11 @@ function AddUser(){
                             password: values.password,
                             mobile_number:values.mobile};
                         
-                        dispatch(addUser(Data));
+                        dispatch(addUser(Data)).unwrap().then(()=>{
+                            dispatch(getUsers());
+                            
+                        })
+
                       navigate('/user-list');
                        } } }>
 
@@ -118,7 +122,7 @@ function AddUser(){
                     <label>name</label><br></br>
                     <input type='text'
                          name='name'  required='required' 
-                         onKeyDown={(e) => nameCharacter.includes(e.key) && e.preventDefault()} 
+                         onKeyDown={(e) => NameCharacter.includes(e.key) && e.preventDefault()} 
                          onChange={(e) => handleInputChange(e)}
                          value={values.name} />
                           {errors.name ? <label style={{ color: "red", fontSize: "10px" }}>Please enter your name</label> : ""}
@@ -131,7 +135,7 @@ function AddUser(){
                         type='text'
                         className="mail-field"
                         name='email'
-                        onKeyDown={(e) => mailCharacter.includes(e.key) && e.preventDefault()}
+                        onKeyDown={(e) =>MailCharacter.includes(e.key) && e.preventDefault()}
                         onChange={(e) => handleInputChange(e)}
                         required='required' value={values.email}/>
                          {errors.email ? <label style={{ color: "red", fontSize: "10px" }}>enter mail id</label> : ""}

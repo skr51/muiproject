@@ -4,7 +4,7 @@ import { Box } from '@mui/system';
 import { Paper, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 
-export default function WelcomeOne() {
+export default function WelCome() {
   return (
     <Box paddingTop={3} paddingBottom={1} >
       <Paper elevation={3}>

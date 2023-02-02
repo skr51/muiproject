@@ -1,10 +1,10 @@
 import React from 'react'
-import UserList from './users/UserList';
+import UserList from './users/userList';
 import Home from "./users/home"
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import AddUser from './users/AddUser';
-import EditUser from './users/EditUser';
+import AddUser from './users/addUser';
+import EditUser from './users/editUser';
 import Navmui from './sidebar/navmui';
 import { Container } from '@mui/material';
 

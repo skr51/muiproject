@@ -1,14 +1,17 @@
 import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { useState } from 'react'
 /*const initialState = [
 {id:1,name:"jack",mail:"jack@gmail.com",mobile:9090908855},
 {id:2,name:"black",mail:"black@gmail.com",mobile:9090908866},
 {id:3,name:"vasu",mail:"vasu@gmail.com",mobile:9090908877}]*/
+
 export const getUsers=createAsyncThunk("user/getUsers",async ()=>{
   return axios.get('https://crud-api-52np.onrender.com/jd/test/user-list')
   .then(res =>{
-    console.log(res);
+    
       return res.data;
+
 
   })
 })
@@ -16,8 +19,7 @@ export const getUsers=createAsyncThunk("user/getUsers",async ()=>{
 export const addUser = createAsyncThunk("user/addUser",async (Data) => {
   return axios.post("https://crud-api-52np.onrender.com/jd/test/add-user",Data)
   .then(res=>{
-    return (res.data,
-      getUsers());
+    return res.data;
   })
   
  
@@ -30,8 +32,7 @@ export const deleteUser = createAsyncThunk("user/deleteUser",async (id) => {
 return axios.delete(`https://crud-api-52np.onrender.com/jd/test/user-list/${id}`)
 .then(res=>{
   console.log(res.data);
-  return (res.data,
-    getUsers());
+  return res.data;
 })
 }
 );
@@ -43,8 +44,7 @@ export const  editUser = createAsyncThunk("user/ editUser",async ({id, Data},{re
 console.log(Data,">>>>>>>>>>>>>>res");
   return axios.patch(` https://crud-api-52np.onrender.com/jd/test/user-list/${id}`, Data).then(res=>{
    
-    return (res.data,
-    getUsers());
+    return res.data;
   }) . catch (err=> {
         return (rejectWithValue(err.response.data),
         console.log(err.response.data))
@@ -63,12 +63,12 @@ const userSlice = createSlice({
     users :[],
     loading:false,
   },
-  /*reducers:{
-    addUser:(state,action)=>{
+  reducers:{
+    addUserList:(state,action)=>{
       
        state.push(action.payload);
     },
-    editUser:(state,action)=>{
+    editUserList:(state,action)=>{
         const {id,name,mail,mobile}=action.payload;
         const existingUser = state.find(user => user.id === id);
         if(existingUser){
@@ -79,15 +79,11 @@ const userSlice = createSlice({
         }
      
     },
-    deleteUser:(state,action)=>{
+    deleteUserList:(state,action)=>{
       const {id}=action.payload;
-      const existingUser=state.find(user=>user.id===id);
-      if(existingUser
-        ){
-          return state.filter(user=>user.id!==id);
-        }
+    state.users=state.users.filter((user)=>user.id===id)
     }
-  },*/
+  },
   extraReducers:{
     [getUsers.pending]:(state,action)=>{
         state.loading=true;
@@ -152,5 +148,6 @@ const userSlice = createSlice({
 })
 
 
+export const{addUserList , editUserList, deleteUserList }=userSlice.actions;
 
 export default userSlice.reducer;

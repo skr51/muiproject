@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {  NavLink, useNavigate } from "react-router-dom";
-import { deleteUser , getUsers } from "../features/user/userSlice";
+import { deleteUser , deleteUserList, getUsers } from "../features/user/userSlice";
 
 
 
@@ -11,20 +11,21 @@ import { deleteUser , getUsers } from "../features/user/userSlice";
 const UserList=()=>{
     const navigate=useNavigate();
     const dispatch=useDispatch();
-  const {users}=useSelector (store=>store.user);
+  const {users}=useSelector (state=>state.user);
 
         useEffect(()=>{
          
             dispatch(getUsers());
-            console.log(users,"<<<<<<fttt");
-        },[])
+            
+        },[dispatch])
         
      
         const handleRemoveUser=(id)=>{
             if (window.confirm("Are you sure you want to delete this tour ?")) {
-            dispatch(deleteUser(id));
-           
-            navigate('/user-list');
+            dispatch(deleteUser(id)).unwrap().then(()=>{
+                dispatch(getUsers());
+                
+            })
             }
            };
            const handleEdit=(id)=>{
@@ -50,7 +51,7 @@ return(
                      <tr key={index}>
                      <td>{user.username}</td>
                      <td>{user.email}</td>
-                     <td>{user.mobile_number}</td>
+                     <td className="number-list">{user.mobile_number}</td>
                   
                      <td>
                      <button  className="ed-botton" onClick={()=>handleEdit(user._id)}>edit</button>

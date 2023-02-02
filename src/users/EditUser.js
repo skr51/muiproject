@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { editUser } from "../features/user/userSlice";
+import { editUser, getUsers } from "../features/user/userSlice";
 import {
   checkDuplicateSpaces,
   checkInitialSpace,
   MobileCharacter,
-} from "../utils/Helper";
-import { mailCharacter } from "../utils/Helper";
-import { nameCharacter } from "../utils/Helper";
+} from "../utils/helper";
+import { MailCharacter } from "../utils/helper";
+import { NameCharacter } from "../utils/helper";
 
 const EditUser = () => {
   // const [existingUser, setExistingUser] = useState([])
 
   const {id} = useParams();
   const dispatch = useDispatch();
-  const {users} = useSelector((store) => store.user);
+  const {users} = useSelector((state) => state.user);
   const navigate = useNavigate();
   const existingUser = users.filter((user) => user._id === id);
 
@@ -119,7 +119,10 @@ const EditUser = () => {
               password: values.password,
               mobile_number: values.mobile,
             };
-            dispatch(editUser({ id, Data }));
+            dispatch(editUser({ id, Data })).unwrap().then(()=>{
+              dispatch(getUsers());
+              
+          })
             navigate("/user-list");
           }
         }}
@@ -134,7 +137,7 @@ const EditUser = () => {
             name="name"
             required="required"
             onKeyDown={(e) =>
-              nameCharacter.includes(e.key) && e.preventDefault()
+              NameCharacter.includes(e.key) && e.preventDefault()
             }
             onChange={(e) => handleInputChange(e)}
             value={values.name}
@@ -156,7 +159,7 @@ const EditUser = () => {
             className="mail-field"
             name="mail"
             onKeyDown={(e) =>
-              mailCharacter.includes(e.key) && e.preventDefault()
+              MailCharacter.includes(e.key) && e.preventDefault()
             }
             onChange={(e) => handleInputChange(e)}
             required="required"

@@ -9,7 +9,7 @@ import Container from "@mui/material/Container";
 
 
 import { Box } from "@mui/system";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 
 function Navmui() {
@@ -39,11 +39,13 @@ function Navmui() {
                         alignItems="center"
                         spacing={0}
                         padding={1}
+                        height={45}
                     >
-                        <Box  ><NavLink to= '/'><toolbar><Typography variant="h6" sx={{ alignItems: "center", justifyContent: "center" }}>HOME</Typography></toolbar></NavLink></Box>
-                        <Box  ><NavLink to= '/user-list'> <toolbar>USERLIST</toolbar></NavLink></Box>
-                        <Box  ><NavLink to="/add-user"> <toolbar>ADDUSER</toolbar></NavLink></Box>
-                        <Box  ><NavLink to='/edit-user/:id'> <toolbar>EDITUSER</toolbar></NavLink></Box>
+                        <Box  ><NavLink to= '/'><Toolbar ><Typography variant="h6" sx={{ alignItems: "center", justifyContent: "center" }}>
+                            HOME</Typography></Toolbar></NavLink></Box>
+                        <Box  ><NavLink to= '/user-list'> <Toolbar >USERLIST</Toolbar></NavLink></Box>
+                        <Box  ><NavLink to="/add-user"> <Toolbar >ADDUSER</Toolbar></NavLink></Box>
+                        <Box  ><NavLink to='/edit-user/:id'> <Toolbar >EDITUSER</Toolbar></NavLink></Box>
                     </Stack>
                 </Container>
 

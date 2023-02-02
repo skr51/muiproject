@@ -137,5 +137,6 @@
     margin-top: 24px;
       background-color:hsl(120, 3%, 94%);
    }
-   /* width: 80%;
-   margin: 0 auto;*/
+   .number-list{
+      text-align: left;
+   }
